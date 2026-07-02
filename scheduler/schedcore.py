@@ -19,6 +19,9 @@ DBUS_INTERFACE = "org.kde.ScreenBrightness.Display"
 MAX_BRIGHTNESS = 10000
 ANCHOR_ORDER = ("night", "sunrise", "noon", "sunset")
 
+# org.kde.ScreenBrightness.Display SetBrightness flags (powerdevilscreenbrightnessagent.h)
+SUPPRESS_INDICATOR = 0x1
+
 
 def load_config() -> dict:
     with open(CONFIG_PATH) as f:
@@ -81,5 +84,5 @@ def set_brightness(bus: "dbus.SessionBus", dbus_path: str, pct: float) -> int:
     obj = bus.get_object(DBUS_SERVICE, dbus_path)
     iface = dbus.Interface(obj, DBUS_INTERFACE)
     value = int(round(pct / 100 * MAX_BRIGHTNESS))
-    iface.SetBrightness(dbus.Int32(value), dbus.UInt32(0))
+    iface.SetBrightness(dbus.Int32(value), dbus.UInt32(SUPPRESS_INDICATOR))
     return value
