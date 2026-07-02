@@ -54,6 +54,14 @@ PlasmoidItem {
 
     compactRepresentation: Kirigami.Icon {
         source: "video-display-brightness-symbolic"
+        Layout.fillWidth: false
+        Layout.fillHeight: false
+        Layout.minimumWidth: Kirigami.Units.iconSizes.small
+        Layout.minimumHeight: Kirigami.Units.iconSizes.small
+        Layout.preferredWidth: Kirigami.Units.iconSizes.small
+        Layout.preferredHeight: Kirigami.Units.iconSizes.small
+        Layout.maximumWidth: Kirigami.Units.iconSizes.small
+        Layout.maximumHeight: Kirigami.Units.iconSizes.small
         MouseArea {
             anchors.fill: parent
             onClicked: root.expanded = !root.expanded
@@ -63,6 +71,8 @@ PlasmoidItem {
     fullRepresentation: PlasmaComponents3.ScrollView {
         implicitWidth: Kirigami.Units.gridUnit * 22
         implicitHeight: Kirigami.Units.gridUnit * 26
+        Layout.preferredWidth: Kirigami.Units.gridUnit * 22
+        Layout.preferredHeight: Kirigami.Units.gridUnit * 26
 
         ColumnLayout {
             width: parent.width

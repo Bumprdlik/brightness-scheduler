@@ -32,6 +32,22 @@ def cmd_get_status(_args) -> None:
     print(json.dumps(out))
 
 
+def _apply_current(config: dict, monitor: str) -> None:
+    """Snap a monitor's real brightness back to what the schedule says for right now.
+
+    Reverts the transient `preview` value left over from dragging a slider, without
+    waiting for the next brightness-scheduler.timer tick.
+    """
+    if not config.get("enabled", True):
+        return
+    mon_cfg = config["monitors"][monitor]
+    now = datetime.now().astimezone()
+    points = schedcore.build_anchor_points(mon_cfg["anchors"], config["location"], now)
+    pct = schedcore.interpolate(points, now)
+    bus = dbus.SessionBus()
+    schedcore.set_brightness(bus, mon_cfg["dbus_path"], pct)
+
+
 def cmd_set_anchor(args) -> None:
     if args.anchor not in schedcore.ANCHOR_ORDER:
         sys.exit(f"unknown anchor: {args.anchor}")
@@ -40,6 +56,7 @@ def cmd_set_anchor(args) -> None:
         sys.exit(f"unknown monitor: {args.monitor}")
     config["monitors"][args.monitor]["anchors"][args.anchor] = max(0, min(100, args.value))
     schedcore.save_config(config)
+    _apply_current(config, args.monitor)
 
 
 def cmd_set_enabled(args) -> None:
