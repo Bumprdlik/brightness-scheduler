@@ -1,0 +1,16 @@
+{
+  "KPlugin": {
+    "Authors": [
+      {
+        "Name": "vencator"
+      }
+    ],
+    "Description": "Sun-relative brightness schedule for external monitors (Prague)",
+    "Icon": "video-display-brightness-symbolic",
+    "Id": "org.vencator.brightnessscheduler",
+    "Name": "Brightness Schedule",
+    "Version": "1.0"
+  },
+  "X-Plasma-API-Minimum-Version": "6.0",
+  "KPackageStructure": "Plasma/Applet"
+}

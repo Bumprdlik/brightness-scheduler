@@ -1,0 +1,7 @@
+[Unit]
+Description=Set monitor brightness from sun-relative schedule (Prague)
+After=graphical-session.target
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/python3 %h/Projects/Personal/brightness-scheduler/scheduler/brightness-scheduler.py

@@ -1,0 +1,33 @@
+{
+  "enabled": true,
+  "location": {
+    "name": "Prague",
+    "region": "Czechia",
+    "latitude": 50.0755,
+    "longitude": 14.4378,
+    "timezone": "Europe/Prague",
+    "elevation": 235
+  },
+  "monitors": {
+    "lg": {
+      "label": "LG 34GL750",
+      "dbus_path": "/org/kde/ScreenBrightness/display0",
+      "anchors": {
+        "night": 20,
+        "sunrise": 55,
+        "noon": 100,
+        "sunset": 55
+      }
+    },
+    "acer": {
+      "label": "Acer V243W",
+      "dbus_path": "/org/kde/ScreenBrightness/display1",
+      "anchors": {
+        "night": 20,
+        "sunrise": 55,
+        "noon": 100,
+        "sunset": 55
+      }
+    }
+  }
+}

@@ -1,0 +1,10 @@
+[Unit]
+Description=Periodically apply sun-relative monitor brightness schedule (Prague)
+
+[Timer]
+OnStartupSec=1min
+OnUnitActiveSec=5min
+AccuracySec=30s
+
+[Install]
+WantedBy=timers.target
